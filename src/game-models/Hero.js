@@ -17,12 +17,14 @@ class Hero {
       d: () => this.moveRight(),
       space: () => {
         this.boomerang.direction = true;
+        this.boomerang.position = this.position + 2;
+
         this.attack();
       },
     };
   }
 
-   control() {
+  control() {
     keypress(process.stdin);
     process.stdin.on('keypress', (ch, key) => {
       if (key) {
@@ -54,7 +56,13 @@ class Hero {
 
   attack() {
     // Атакуем.
-    setInterval(() => this.boomerang.fly(), 200);
+    setInterval(() => {
+      if (this.boomerang.position >= this.position + 1) {
+        this.boomerang.fly();
+      } else {
+        this.boomerang.position = -1;
+      }
+    }, 200);
   }
 
   die() {

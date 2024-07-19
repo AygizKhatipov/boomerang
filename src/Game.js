@@ -19,12 +19,13 @@ class Game {
     this.view = new View();
     this.track = [];
     this.regenerateTrack();
+    this.score = 0;
   }
 
   regenerateTrack() {
     // Сборка всего необходимого (герой, враг(и), оружие)
     // в единую структуру данных
-    this.track = new Array(this.trackLength).fill('_');
+    this.track = new Array(this.trackLength).fill(' ');
     this.track[this.hero.position] = this.hero.skin;
     this.track[this.enemy.position] = this.enemy.skin;
 
@@ -38,16 +39,8 @@ class Game {
     if (this.enemy.position <= this.hero.boomerang.position) {
       this.enemy = new Enemy();
       this.hero.boomerang.direction = false;
-      // console.log('inside ENEMY DEAD');
-      // this.enemy.die();
-      // this.track[this.enemy.position] = this.enemy.skin;
+      this.score += 1;
     }
-    // if (this.hero.boomerang.position === this.hero.position + 1) {
-    //   this.hero.boomerang.position = -1;
-    // }
-    // if (this.hero.control() === 'space') {
-    //   this.hero.boomerang.position = this.hero.position - 1;
-    // }
   }
 
   play() {
@@ -61,7 +54,7 @@ class Game {
 
       this.check();
       this.regenerateTrack();
-      this.view.render(this.track);
+      this.view.render(this.track, this.score);
     }, 0.1);
   }
 }
