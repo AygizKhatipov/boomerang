@@ -25,13 +25,14 @@ class View {
       return playerChoises['skin'];
   }
 
-  async Results() {
+  static async Results() {
+    const heroSkin = ['🤠', '💃', '🦹‍♂️', '🐧', '🗿', '👽'];
     const nickname = await this.newNickname();
     const skinIndex = await this.newSkin();
 
     const chosenSkin = ['🤠', '💃', '🦹‍♂️', '🐧', '🗿', '👽'][skinIndex];
 
-    console.log(`Ваш выбор: ${nickname}, ${chosenSkin}`);
+    return ({ nickname, emoji:heroSkin[skinIndex] });
   }
 }
 
