@@ -18,9 +18,10 @@ class Boomerang {
   }
 
   moveLeft() {
-    if (this.position > -1) {
-      this.position -= 1;
-    }
+    // if (this.position > -1) {
+    
+    // }
+    this.position -= 1;
     // Идём влево.
   }
 
